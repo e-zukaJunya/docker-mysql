@@ -7,14 +7,17 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=mysql
-      - MYSQL_USER=mysql
-      - MYSQL_PASSWORD=mysql
-      - TZ='Asia/Tokyo'
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_USER: e-zuka
+      MYSQL_PASSWORD: e-zuka
+      TZ: 'Asia/Tokyo'
+    # command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: --innodb-use-native-aio=0
     volumes:
       - ./mysql/data:/var/lib/mysql
-      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      # - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./mysql/sql:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
+    tty: true
+    stdin_open: true
