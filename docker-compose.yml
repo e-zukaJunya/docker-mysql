@@ -2,22 +2,22 @@ version: '3'
 
 services:
    mysql:
-    build: ./mysql/
-    image: my_mysql
-    ports:
-      - 3306:3306
+    image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: mysql
-      MYSQL_USER: e-zuka
-      MYSQL_PASSWORD: e-zuka
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: iizuka
+      MYSQL_PASSWORD: iizuka
+      MYSQL_ROOT_PASSWORD: iizuka
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       TZ: 'Asia/Tokyo'
-    # command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    # よくわからんけどこれでエラー消える
     command: --innodb-use-native-aio=0
     volumes:
+      # データボリュームのマウント
       - ./mysql/data:/var/lib/mysql
-      # - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      # DDLや初期データ投入
       - ./mysql/sql:/docker-entrypoint-initdb.d
+      # MySQLの設定ファイル（多分Docker for Windowsなら大丈夫）
+      # - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
-    tty: true
-    stdin_open: true

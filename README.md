@@ -1,7 +1,20 @@
+# Memo
+
+
+
+```bash
+docker-compose build --no-cache
+
 docker-compose up -d
+docker-compose up --project-name test-mysql -d
+
 docker-compose exec mysql bash
-docker-compose down --rmi all -v
 
-# MySQL を起動
+docker-compose stop
 
-mysql -u root -p -h 127.0.0.1
+docker-compose start
+
+docker-compose down --rmi all --volumes --remove-orphans
+
+```
+

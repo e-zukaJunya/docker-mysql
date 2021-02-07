@@ -1,5 +1,4 @@
-CREATE DATABASE sample_db;
-use sample_db;
+use test_db;
 
 CREATE TABLE users (
   id int(10) unsigned not null auto_increment,
