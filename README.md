@@ -6,7 +6,6 @@
 docker-compose build --no-cache
 
 docker-compose up -d
-docker-compose up --project-name test-mysql -d
 
 docker-compose exec mysql bash
 
