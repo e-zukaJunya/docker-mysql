@@ -15,5 +15,9 @@ docker-compose start
 
 docker-compose down --rmi all --volumes --remove-orphans
 
+# クエリログの確認
+tail -n行数 ファイル -f
+tail -n10 /var/lib/mysql/mysql-query.log -f
+
 ```
 
