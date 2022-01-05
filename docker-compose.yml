@@ -2,22 +2,23 @@ version: '3'
 
 services:
    mysql:
-    image: mysql:latest
+    image: mysql:8
     environment:
-      MYSQL_DATABASE: test_db
+      MYSQL_DATABASE: Test
       MYSQL_USER: iizuka
       MYSQL_PASSWORD: iizuka
       MYSQL_ROOT_PASSWORD: iizuka
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       TZ: 'Asia/Tokyo'
-    # よくわからんけどこれでエラー消える
-    command: --innodb-use-native-aio=0
     volumes:
       # データボリュームのマウント
-      - ./mysql/data:/var/lib/mysql
+      - mysql:/var/lib/mysql
       # DDLや初期データ投入
       - ./mysql/sql:/docker-entrypoint-initdb.d
-      # MySQLの設定ファイル（多分Docker for Windowsなら大丈夫）
-      # - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      # MySQLの設定ファイル
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
+
+volumes:
+  mysql:

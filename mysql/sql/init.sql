@@ -1,4 +1,4 @@
-use test_db;
+use Test;
 
 CREATE TABLE users (
   id int(10) unsigned not null auto_increment,
